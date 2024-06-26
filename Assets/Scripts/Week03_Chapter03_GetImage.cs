@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using System.Collections;       // IEnumerator ÇÃÇΩÇﬂÇÃéQè∆
 using UnityEngine.Networking;   // UnityWebRequest ÇÃÇΩÇﬂÇÃéQè∆
 
-public class Week03_Chapter02_GetImage : MonoBehaviour, IPointerClickHandler
+public class Week03_Chapter03_GetImage : MonoBehaviour, IPointerClickHandler
 {
     void Start()
     {

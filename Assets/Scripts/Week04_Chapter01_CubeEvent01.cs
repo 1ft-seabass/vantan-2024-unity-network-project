@@ -8,23 +8,19 @@ using System;                   // Serializable のための参照
 public class Week04_Chapter01_CubeEvent01 : MonoBehaviour, IPointerClickHandler
 {
     // アクセスする API の URL
-    string urlAPI = "https://www.boredapi.com/api/activity?participants=1";
+    // https://uselessfacts.jsph.pl/
+    string urlAPI = "https://uselessfacts.jsph.pl/api/v2/facts/random";
 
     // 受信した JSON データを Unity で扱うデータにする ResponseData ベースクラス
     [Serializable]
     public class ResponseData
     {
-        // activity というプロパティ名で string 型で変換
-        // activity だけ取得
-        public string activity;
+        // text というプロパティ名で string 型で変換
+        // text だけ取得
+        public string text;
     }
 
     void Start()
-    {
-        
-    }
-
-    void Update()
     {
 
     }
@@ -64,7 +60,7 @@ public class Week04_Chapter01_CubeEvent01 : MonoBehaviour, IPointerClickHandler
                 ResponseData response = JsonUtility.FromJson<ResponseData>(request.downloadHandler.text);
 
                 // MessageText に結果テキスト割り当て
-                this.transform.Find("MessageText").GetComponent<TextMesh>().text = response.activity;
+                this.transform.Find("MessageText").GetComponent<TextMesh>().text = response.text;
 
                 break;
         }
@@ -72,4 +68,8 @@ public class Week04_Chapter01_CubeEvent01 : MonoBehaviour, IPointerClickHandler
 
     }
 
+    void Update()
+    {
+
+    }
 }

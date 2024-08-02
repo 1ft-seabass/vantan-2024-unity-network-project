@@ -14,11 +14,18 @@ public class Week05_Chapter03_GetAPI_OK_Sample : MonoBehaviour
     string urlAPI = "";
 
     // 受信した JSON データを Unity で扱うデータにする ResponseData ベースクラス
-    // 今回は {"data":["Red","Yello","Blue"]} という data のオブジェクトの中に配列が入っています
     [Serializable]
     public class ResponseData
     {
-        public List<string> data;
+        public List<ResponseDataItem> data;
+    }
+
+    // 各配列の中にある id や color を受け取る ResponseDataItem ベースクラス
+    [Serializable]
+    public class ResponseDataItem
+    {
+        public string id;
+        public string color;
     }
 
     void Start()
@@ -70,7 +77,7 @@ public class Week05_Chapter03_GetAPI_OK_Sample : MonoBehaviour
 
                     // Debug.Log("Cube" + i.ToString());
 
-                    string colorName = response.data[i];
+                    string colorName = response.data[i].color;
 
                     // Debug.Log(colorName);
 

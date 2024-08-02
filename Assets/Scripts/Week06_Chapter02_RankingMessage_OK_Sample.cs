@@ -1,47 +1,45 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+using System.Collections.Generic; // List のための参照
 using System.Collections;       // IEnumerator のための参照
 using UnityEngine.Networking;   // UnityWebRequest のための参照
 using System;                   // Serializable のための参照
+using System.Text;              // Encoding のための参照
 
-using System.Collections.Generic; // List のための参照
 
-public class Week05_Chapter03_GetAPI : MonoBehaviour
+public class Week06_Chapter02_RankingMessage_OK_Sample : MonoBehaviour
 {
-    // API の接続先
-    // 今回は サーバーURL + /api/get を読み込む
-    string urlAPI = "";
-
     // 受信した JSON データを Unity で扱うデータにする ResponseData ベースクラス
+    // 今回は data の中身が配列で、さらに Name , Point , CreatedTime のプロパティが入っているので、List の中身を定義する ResponseDataList 型を作成。
     [Serializable]
     public class ResponseData
     {
-        public List<ResponseDataItem> data;
+        public List<ResponseDataList> data;
     }
 
-    // 各配列の中にある id や color を受け取る ResponseDataItem ベースクラス
+    // Name , Point , CreatedTime のプロパティが入っているので、List の中身を定義する ResponseDataList 型を作成
     [Serializable]
-    public class ResponseDataItem
+    public class ResponseDataList
     {
+        public string Name;
+        public int Point;
+        public string CreatedTime;
     }
 
     void Start()
     {
-        // 開始時に読み込み開始
         GetDataCore();
     }
 
-    void Update()
+    public void GetDataCore()
     {
-
-    }
-
-    void GetDataCore()
-    {
-        // HTTP リクエストを非同期処理を待つためコルーチンとして呼び出す
         StartCoroutine("GetData");
     }
+
+    // アクセスする URL
+    // サーバーURL + /api/get/ranking でアクセス
+    string urlAPI = "";
 
     IEnumerator GetData()
     {
@@ -68,11 +66,24 @@ public class Week05_Chapter03_GetAPI : MonoBehaviour
                 // ResponseData クラスで Unity で扱えるデータ化
                 ResponseData response = JsonUtility.FromJson<ResponseData>(request.downloadHandler.text);
 
+                // 文字列を初期化
+                string textRankingList = "[Ranking]\n";
+
+                Debug.Log(response.data);
+
                 // データを一つずつ反映する
                 for (int i = 0; i < 3; i++)
                 {
-                   
+                    ResponseDataList currentLine = response.data[i];
+
+                    Debug.Log(currentLine);
+
+                    // 文字列を連結
+                    textRankingList += "[" + i.ToString() + "]" + currentLine.Name + " " + currentLine.Point.ToString() + "pt" + "\n";
                 }
+
+                // メッセージに反映
+                this.transform.GetComponent<TextMesh>().text = textRankingList;
 
                 break;
         }

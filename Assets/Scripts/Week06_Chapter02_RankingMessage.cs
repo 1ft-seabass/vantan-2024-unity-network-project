@@ -70,7 +70,7 @@ public class Week06_Chapter02_RankingMessage : MonoBehaviour
                 Debug.Log(response.data);
 
                 // ƒf[ƒ^‚ğˆê‚Â‚¸‚Â”½‰f‚·‚é
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < response.data.Count; i++)
                 {
                     ResponseDataList currentLine = response.data[i];
 

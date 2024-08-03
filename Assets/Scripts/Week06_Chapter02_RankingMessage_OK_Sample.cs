@@ -18,13 +18,12 @@ public class Week06_Chapter02_RankingMessage_OK_Sample : MonoBehaviour
         public List<ResponseDataList> data;
     }
 
-    // Name , Point , CreatedTime のプロパティが入っているので、List の中身を定義する ResponseDataList 型を作成
+    // name , point のプロパティが入っているので、List の中身を定義する ResponseDataList 型を作成
     [Serializable]
     public class ResponseDataList
     {
-        public string Name;
-        public int Point;
-        public string CreatedTime;
+        public string name;
+        public int point;
     }
 
     void Start()
@@ -38,8 +37,8 @@ public class Week06_Chapter02_RankingMessage_OK_Sample : MonoBehaviour
     }
 
     // アクセスする URL
-    // サーバーURL + /api/get/ranking でアクセス
-    string urlAPI = "";
+    // サーバーURL + /pointlist でアクセス
+    string urlAPI = "https://legendary-broccoli-qvg9v4r495f4vxq-1880.app.github.dev/pointlist";
 
     IEnumerator GetData()
     {
@@ -72,14 +71,14 @@ public class Week06_Chapter02_RankingMessage_OK_Sample : MonoBehaviour
                 Debug.Log(response.data);
 
                 // データを一つずつ反映する
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < response.data.Count; i++)
                 {
                     ResponseDataList currentLine = response.data[i];
 
                     Debug.Log(currentLine);
 
                     // 文字列を連結
-                    textRankingList += "[" + i.ToString() + "]" + currentLine.Name + " " + currentLine.Point.ToString() + "pt" + "\n";
+                    textRankingList += "[" + i.ToString() + "]" + currentLine.name + " " + currentLine.point.ToString() + "pt" + "\n";
                 }
 
                 // メッセージに反映

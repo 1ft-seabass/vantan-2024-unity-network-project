@@ -9,23 +9,21 @@ using System.Text;              // Encoding のための参照
 
 public class Week06_Chapter01_SendButton : MonoBehaviour, IPointerClickHandler
 {
-    // 受信した JSON データを Unity で扱うデータにする ResultResponseData ベースクラス
-    [Serializable]
-    public class ResultResponseData
-    {
-        // result というプロパティ名で string 型で変換
-        public string result;
-    }
+
+    // 受信した JSON データを解析しないのでこちらのベースクラス作らない
 
     // 送信する Unity データを JSON データ化する PointRequestData ベースクラス
     [Serializable]
     public class PointRequestData
     {
-        
+        // point というプロパティ名で int 型で変換
+        public int point;
+        // name というプロパティ名で int 型で変換
+        public string name;
     }
 
     // アクセスする URL
-    // サーバーURL + /api/post/result でアクセス
+    // サーバーURL + /pointlist でアクセス
     string urlGitHub = "";
 
     public void OnPointerClick(PointerEventData eventData)
@@ -46,9 +44,8 @@ public class Week06_Chapter01_SendButton : MonoBehaviour, IPointerClickHandler
         PointRequestData pointRequestData = new PointRequestData();
         // データを設定
         // 現在のポイントを得る
-        
+
         // 自分の名前を登録
-        
 
         // 送信データを JsonUtility.ToJson で JSON 文字列を作成
         // pointRequestData の構造に基づいて変換してくれる
@@ -82,11 +79,7 @@ public class Week06_Chapter01_SendButton : MonoBehaviour, IPointerClickHandler
                 // コンソールに表示
                 Debug.Log($"responseData: {request.downloadHandler.text}");
 
-                // ResultResponseData クラスで Unity で扱えるデータ化
-                ResultResponseData resultResponse = JsonUtility.FromJson<ResultResponseData>(request.downloadHandler.text);
-
-                // StatusMessage に結果テキスト割り当て
-
+                // StatusMessage にランキングを割り当て
 
                 break;
         }

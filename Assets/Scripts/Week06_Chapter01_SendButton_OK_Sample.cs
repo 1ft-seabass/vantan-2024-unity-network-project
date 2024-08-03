@@ -8,15 +8,7 @@ using System.Text;              // Encoding のための参照
 
 public class Week06_Chapter01_SendButton_OK_Sample : MonoBehaviour, IPointerClickHandler
 {
-    // 受信した JSON データを Unity で扱うデータにする ResultResponseData ベースクラス
-    [Serializable]
-    public class ResultResponseData
-    {
-        // result というプロパティ名で string 型で変換
-        public string result;
-        // recordPoint というプロパティ名で int 型で変換
-        public int recordPoint;
-    }
+    // 受信した JSON データを解析しないのでこちらのベースクラス作らない
 
     // 送信する Unity データを JSON データ化する PointRequestData ベースクラス
     [Serializable]
@@ -29,7 +21,7 @@ public class Week06_Chapter01_SendButton_OK_Sample : MonoBehaviour, IPointerClic
     }
 
     // アクセスする URL
-    // サーバーURL + /api/post/result でアクセス
+    // サーバーURL + /pointlist でアクセス
     string urlGitHub = "";
 
     public void OnPointerClick(PointerEventData eventData)
@@ -85,9 +77,6 @@ public class Week06_Chapter01_SendButton_OK_Sample : MonoBehaviour, IPointerClic
 
                 // コンソールに表示
                 Debug.Log($"responseData: {request.downloadHandler.text}");
-
-                // ResultResponseData クラスで Unity で扱えるデータ化
-                ResultResponseData resultResponse = JsonUtility.FromJson<ResultResponseData>(request.downloadHandler.text);
 
                 // StatusMessage にランキングを割り当て
                 GameObject.Find("StatusMessage").GetComponent<TextMesh>().text = "登録されました！";

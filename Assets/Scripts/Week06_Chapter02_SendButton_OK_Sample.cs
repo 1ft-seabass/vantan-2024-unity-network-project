@@ -7,7 +7,7 @@ using System;                   // Serializable のための参照
 using System.Text;              // Encoding のための参照
 using UnityEngine.UI;           // InputField のための参照
 
-public class Week06_Chapter02_SendButton : MonoBehaviour, IPointerClickHandler
+public class Week06_Chapter02_SendButton_OK_Sample : MonoBehaviour, IPointerClickHandler
 {
 
     // 送信する Unity データを JSON データ化する PointRequestData ベースクラス
@@ -22,7 +22,7 @@ public class Week06_Chapter02_SendButton : MonoBehaviour, IPointerClickHandler
 
     // アクセスする URL
     // サーバーURL + /pointlist でアクセス
-    string urlGitHub = "";
+    string urlGitHub = "https://legendary-broccoli-qvg9v4r495f4vxq-1880.app.github.dev/pointlist";
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -83,7 +83,8 @@ public class Week06_Chapter02_SendButton : MonoBehaviour, IPointerClickHandler
 
                 // RankingMessage で最新データを取得
                 // GetDataCore を動かす
-                
+                GameObject.Find("RankingMessage").GetComponent<Week06_Chapter02_RankingMessage_OK_Sample>().GetDataCore();
+
 
                 break;
         }

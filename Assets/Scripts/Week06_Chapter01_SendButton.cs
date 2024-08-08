@@ -16,10 +16,7 @@ public class Week06_Chapter01_SendButton : MonoBehaviour, IPointerClickHandler
     [Serializable]
     public class PointRequestData
     {
-        // point というプロパティ名で int 型で変換
-        public int point;
-        // name というプロパティ名で int 型で変換
-        public string name;
+        
     }
 
     // アクセスする URL

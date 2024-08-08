@@ -11,7 +11,7 @@ using System.Text;              // Encoding のための参照
 public class Week06_Chapter02_RankingMessage_OK_Sample : MonoBehaviour
 {
     // 受信した JSON データを Unity で扱うデータにする ResponseData ベースクラス
-    // 今回は data の中身が配列で、さらに Name , Point , CreatedTime のプロパティが入っているので、List の中身を定義する ResponseDataList 型を作成。
+    // 今回は data の中身が配列で、List の中身を定義する ResponseDataList 型を作成。
     [Serializable]
     public class ResponseData
     {
@@ -38,7 +38,7 @@ public class Week06_Chapter02_RankingMessage_OK_Sample : MonoBehaviour
 
     // アクセスする URL
     // サーバーURL + /pointlist でアクセス
-    string urlAPI = "https://legendary-broccoli-qvg9v4r495f4vxq-1880.app.github.dev/pointlist";
+    string urlAPI = "";
 
     IEnumerator GetData()
     {

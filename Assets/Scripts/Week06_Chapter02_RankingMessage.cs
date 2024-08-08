@@ -11,14 +11,14 @@ using System.Text;              // Encoding のための参照
 public class Week06_Chapter02_RankingMessage : MonoBehaviour
 {
     // 受信した JSON データを Unity で扱うデータにする ResponseData ベースクラス
-    // 今回は data の中身が配列で、さらに Name , Point , CreatedTime のプロパティが入っているので、List の中身を定義する ResponseDataList 型を作成。
+    // 今回は data の中身が配列で、List の中身を定義する ResponseDataList 型を作成。
     [Serializable]
     public class ResponseData
     {
         public List<ResponseDataList> data;
     }
 
-    // Name , Point , CreatedTime のプロパティが入っているので、List の中身を定義する ResponseDataList 型を作成
+    // name , point のプロパティが入っているので、List の中身を定義する ResponseDataList 型を作成
     [Serializable]
     public class ResponseDataList
     {

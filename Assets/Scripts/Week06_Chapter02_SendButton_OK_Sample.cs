@@ -22,7 +22,7 @@ public class Week06_Chapter02_SendButton_OK_Sample : MonoBehaviour, IPointerClic
 
     // アクセスする URL
     // サーバーURL + /pointlist でアクセス
-    string urlGitHub = "https://legendary-broccoli-qvg9v4r495f4vxq-1880.app.github.dev/pointlist";
+    string urlGitHub = "";
 
     public void OnPointerClick(PointerEventData eventData)
     {

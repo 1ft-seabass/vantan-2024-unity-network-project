@@ -36,7 +36,7 @@ public class Week06_Chapter02_RankingMessage : MonoBehaviour
     }
 
     // アクセスする URL
-    // サーバーURL + /api/get/ranking でアクセス
+    // サーバーURL + /pointlist でアクセス
     string urlAPI = "";
 
     IEnumerator GetData()
